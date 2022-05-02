@@ -1,3 +1,4 @@
+const dev = false;
 const typeMain = "Open Sans";
 const typeSecondary = "Copse";
 
@@ -164,7 +165,11 @@ var logoComponent = {
     var background = new Image();
     background.crossOrigin = "Anonymous";
     var reader = new FileReader();
-    background.src = "../img/wcpss-logo.png";
+    if (dev == true) {
+      background.src = "../img/wcpss-logo.png";
+    } else {
+      background.src = "./img/wcpss-logo.png";
+    }
 
     background.onload = function() {
       sourceHeight = background.height;

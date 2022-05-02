@@ -1,3 +1,23 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:regular);
+@import url(https://fonts.googleapis.com/css?family=Copse:regular);
+:root {
+  --aristotle-blue: rgb(22, 87, 136);
+  --keller-red: rgb(201, 0, 98);
+  --willard-yellow: rgb(254, 209, 0);
+  --froebel-blue: rgb(0, 173, 208);
+  --einstein-red: rgb(110, 39, 61);
+  --locke-green: rgb(190, 214, 0);
+  --webster-orange: rgb(227, 114, 34);
+  --confucius-gray: rgb(55, 66, 74);
+
+  --type-main: "Open Sans";
+  --type-secondary: "Copse";
+}
+
+html {
+  font-family: var(--type-main);
+}
+
 canvas {
   height: 233px;
   width: 350px;
@@ -7,7 +27,7 @@ canvas {
 
 #editCanvas {
   height: 233px;
-  weidth: 350px;
+  width: 350px;
   border: 1px solid black;
 }
 
@@ -22,27 +42,33 @@ h2:first-of-type {
 
 .color-input {
   width: 80% !important;
+  max-width: 200px;
+  height: 40px;
 }
 
-#title-color .btn {
-  background-color: rgba(0, 255, 0, 0.8);
+/* #title-color .btn {
+  background-color: var(--locke-green);
 }
 
 #category-color .btn {
-  background-color: rgba(0, 0, 255, 0.8);
-}
+  background-color: var(--keller-red);
+} */
 
 .brand-logo {
   margin-left: 25px;
 }
 
 nav {
-  background-color: #26a69a;
+  background-color: var(--aristotle-blue);
   overflow: hidden;
 }
 
 .row {
   margin-bottom: 4px;
+}
+
+#download-row {
+  margin-top: 50px;
 }
 
 .input-field {

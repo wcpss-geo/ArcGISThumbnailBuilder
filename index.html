@@ -16,10 +16,10 @@
   <nav>
     <div class="nav-wrapper">
       <a href="./index.html" class="brand-logo">ArcGIS Thumbnail Builder</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="gallery.html" target="_self">Gallery</a></li>
         <li><a href="help.html" target="_self">Help</a></li>
-      </ul>
+      </ul> -->
     </div>
   </nav>
 
@@ -34,22 +34,40 @@
 
         <div class="row">
           <div id="title-color" class="file-field">
-            <div class="btn color-icon"></div>
+            <!-- <div class="btn color-icon"></div> -->
             <div class="file-path-wrapper">
-              <input type="text" class="color-input" />
+              <label for="title-colors">Title Color</label><br>
+              <input type="color" class="color-input" list="title-colors" value="#165788" colorpick-eyedropper-active="false"/>
+              <datalist id="title-colors">
+                  <option value=#165788>
+                  <option value=#C90062>
+                  <!-- <option value=#FED100> -->
+                  <option value=#00ADD0>
+                  <option value=#6E273D>
+                  <!-- <option value=#BED600> -->
+                  <option value=#E37222>
+                  <option value=#37424A>
+              </datalist>
             </div>
           </div>
           <div id="category-color" class="file-field">
-            <div class="btn color-icon"></div>
+            <!-- <div class="btn color-icon"></div> -->
             <div class="file-path-wrapper">
-              <input type="text" class="color-input" />
+              <label for="category-colors">Category Color</label><br>
+              <input type="color" class="color-input" list="category-colors" value="#165788" colorpick-eyedropper-active="false"/>
+              <datalist id="category-colors">
+                <option value=#165788>
+                <option value=#C90062>
+                <!-- <option value=#FED100> -->
+                <option value=#00ADD0>
+                <option value=#6E273D>
+                <!-- <option value=#BED600> -->
+                <option value=#E37222>
+                <option value=#37424A>
+              </datalist>
             </div>
           </div>
 
-        </div>
-
-        <div class="row">
-          <a id="download-image" download="thumbnail_generated.png" class="waves-effect waves-light btn deep-purple lighten-2"><i class="material-icons left">save</i>Download</a>
         </div>
       </div>
 
@@ -58,7 +76,7 @@
         <div class="row">
           <h2>Title</h2>
           <div class="input-field col s12">
-            <input placeholder="Item Title" type="text" id="title" name="title" />
+            <input placeholder="Item Title" type="text" id="title" name="title" value="Item Title"/>
             <label for="title">Item Title</label>
           </div>
         </div>
@@ -67,16 +85,32 @@
           <h2>Sidebar</h2>
           <div class="input-field col s12">
             <select name="category" id="category">
-            <option value="Web Map">Web Map</option>
-            <option value="Story Map">Story Map</option>
-            <option value="Web App">Web App</option>
-            <option value="Feature Service">Feature Service</option>
-            <option value="Map Service">Map Service</option>
-            <option value="Collector App">Collector App</option>
-            <option value="Basemap">Basemap</option>
-            <option value="Dashboard">Dashboard</option>
-            <option value="Document">Document</option>
-          </select>
+              <option value="Basemap">Basemap</option>
+              <option value="Collector App">Collector App</option>
+              <option value="Collection">Collection</option>
+              <option value="Dashboard">Dashboard</option>
+              <option value="Document">Document</option>
+              <option value="Experience">Experience</option>
+              <option value="Feature Service">Feature Service</option>
+              <option value="Feature Layer">Feature Layer</option>
+              <option value="Feature Layer (Hosted)">Feature Layer (Hosted)</option>
+              <option value="Feature Layer (Hosted, View)">Feature Layer (Hosted, View)</option>
+              <option value="Group">Group</option>
+              <option value="Hub Site">Hub Site</option>
+              <option value="Map Image Layer">Map Image Layer</option>
+              <option value="Map Service">Map Service</option>
+              <option value="Notebook">Notebook</option>
+              <option value="OGC - WMS">OGC - WMS</option>
+              <option value="OGC - WMTS">OGC - WMTS</option>
+              <option value="Web Application">Web Application</option>
+              <option value="Web Map">Web Map</option>
+              <option value="Script">Script</option>
+              <option value="Story Map">Story Map</option>
+              <option value="Survey">Survey</option>
+              <option value="Tile Layer (Hosted)">Tile Layer (Hosted)</option>
+              <option value="Tile Package">Tile Package</option>
+              <option value="Vector Tile Package">Vector Tile Package</option>
+            </select>
           </div>
         </div>
 
@@ -85,7 +119,7 @@
           <input type="hidden" id="background-url" />
           <div class="input-field col s12">
             <div class="file-field input-field">
-              <div class="btn">
+              <div class="btn blue-grey">
                 <span>File</span>
                 <input type="file" id="background">
               </div>
@@ -96,7 +130,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
           <h2>Logo Image</h2>
           <input type="hidden" id="logo-url" />
           <div class="input-field col s12">
@@ -110,12 +144,17 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
       </div>
 
     </div>
     <!-- /row -->
+    <div class="row" id="download-row">
+      <div class="col s12 m4 push-m4">
+        <a id="download-image" download="thumbnail_generated.png" class="waves-effect waves-light btn green lighten-2"><i class="material-icons left">save</i>Download</a>
+      </div>
+    </div>
 
   </div>
   <!-- /container -->
@@ -125,7 +164,7 @@
   <script src="./js/materialize-colorpicker.min.js"></script>
   <script src="./js/editCanvas.js"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-12419040-13"></script>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-12419040-13"></script> -->
   
 </body>
 

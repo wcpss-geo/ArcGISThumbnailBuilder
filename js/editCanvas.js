@@ -1,3 +1,6 @@
+const typeMain = "Open Sans";
+const typeSecondary = "Copse";
+
 var editCanvas = document.querySelector("#edit-canvas");
 editCanvas.height = 400;
 editCanvas.width = 600;
@@ -25,9 +28,13 @@ var titleComponent = {
   _text: function() {
     editCanvas.letterSpacing = 2;
     ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-    ctx.font = '30px sans-serif';
+    ctx.font = `30px ${typeSecondary}`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
+    // ctx.shadowBlur = 20;
+    // ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
+    // ctx.shadowOffsetX = 0;
+    // ctx.shadowOffsetY = 0;
 
     function wrapText(context, text, x, y, maxWidth, lineHeight) {
       var words = text.split(' ');
@@ -74,10 +81,31 @@ var categoryComponent = {
     ctx.translate(524, 200);
     ctx.rotate(-0.5 * Math.PI);
     editCanvas.style.letterSpacing = 4;
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-    ctx.font = '48px sans-serif';
+    ctx.fillStyle = 'rgba(255, 255, 255, 1)';
+    ctx.font = `44px ${typeMain}`;
     ctx.textAlign = "center";
-    ctx.fillText(this.properties.text(), 0, 0);
+    // ctx.fillText(this.properties.text(), 0, 0);
+
+    function wrapText(context, text, x, y, maxWidth, lineHeight) {
+      var words = text.split(' ');
+      var line = '';
+
+      for (var n = 0; n < words.length; n++) {
+        var testLine = line + words[n] + ' ';
+        var metrics = context.measureText(testLine);
+        var testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0) {
+          context.fillText(line, x, -22);
+          line = words[n] + ' ';
+          y += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      context.fillText(line, x, y);
+    }
+    wrapText(ctx, this.properties.text(), 5, 0, 375, 30);
+
     ctx.restore();
   }
 }
@@ -131,29 +159,32 @@ var logoComponent = {
   },
   _addImage: function() {
 
-    var file = document.querySelector(this.properties.domId).files[0];
+    // var file = document.querySelector(this.properties.domId).files[0];
+    var file = "../img/wcpss-logo.png";
     var background = new Image();
     background.crossOrigin = "Anonymous";
     var reader = new FileReader();
+    background.src = "../img/wcpss-logo.png";
 
     background.onload = function() {
       sourceHeight = background.height;
       sourceWidth = background.width;
       ctx.drawImage(background, 0, 0, sourceWidth, sourceHeight,
-        5, 5, 145, 145);
+        0, 0, 100, 100);
     }
 
-    if (file) {
-      reader.addEventListener("load", function() {
-        background.src = reader.result;
-      }, false);
+    // if (file) {
+    //   reader.addEventListener("load", function() {
+    //     // background.src = reader.result;
+    //     background.src = file;
+    //   }, false);
 
-      reader.readAsDataURL(file);
-    }
+    //   reader.readAsDataURL(file);
+    // }
 
-    if (!file && document.querySelector('#logo-url').value !== '') {
-      background.src = document.querySelector('#logo-url').value;
-    }
+    // if (!file && document.querySelector('#logo-url').value !== '') {
+    //   background.src = document.querySelector('#logo-url').value;
+    // }
   }
 }
 
@@ -184,8 +215,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#category').addEventListener('change', draw);
   document.querySelector('#background')
     .addEventListener('change', draw);
-  document.querySelector('#logo')
-    .addEventListener('change', draw);
+  // document.querySelector('#logo')
+  //   .addEventListener('change', draw);
 
   // Any Query Params?
   if (getUrlParameter('titleColor')) {

@@ -131,7 +131,7 @@ var backgroundComponent = {
       sourceWidth = background.width;
       ctx.globalCompositeOperation = 'destination-over';
       ctx.drawImage(background, 0, 0, sourceWidth, sourceHeight,
-        0, 0, 600, 400);
+        0, 0, 500, 300);
       ctx.globalCompositeOperation = 'source-over';
     }
 
